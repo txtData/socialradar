@@ -1,0 +1,53 @@
+{
+  _default_ : {
+    "properties" : {
+      "coordinates" : {
+        "type" : "geo_point",
+		"geohash": true,
+		"geohash_prefix": true,
+		"geohash_precision": 10
+      },
+	  "indexedInfo":{
+	    "properties" : {
+          "coordinates" : {
+			"type" : "geo_point",
+		    "geohash": true,
+		    "geohash_prefix": true,
+		    "geohash_precision": 10
+		  }
+		}
+	  },
+	  "locationName" : {
+	    "type" : "string", 
+	    "index": "not_analyzed"
+	  },
+	  "text":{
+	   "search_analyzer":"analyzer_shingle",
+	   "index_analyzer":"analyzer_shingle",
+	   "type":"string"
+      },
+	  "analysis":{
+	    "properties" : {
+          "textPieces" : {
+		    "properties" : {
+              "annotations" : {
+			    "properties" : {
+                  "ids" : {
+				    "dynamic" : false,
+	                "type" : "object",
+	                "properties" : {}
+				  }
+				}
+			  }
+			}
+		  }
+	    }
+      },
+	  "hashMap":{
+        "dynamic" : false,
+	    "type" : "object",
+	    "properties" : {}
+	  }
+    }
+  }
+}

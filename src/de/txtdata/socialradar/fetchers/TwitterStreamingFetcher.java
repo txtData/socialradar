@@ -33,7 +33,7 @@ public class TwitterStreamingFetcher {
                 Tweet tweet = TweetParser.parse(status);
                 System.out.println(tweet);
                 if (Config.twitter_usersToIgnore.contains(tweet.userName)){
-                    System.out.print("\tUser " + tweet.userName + " is on ignore list. Skipping.");
+                    System.out.println("\tUser " + tweet.userName + " is on ignore list. Skipping.");
                 }else if (tweet.hasCoordinates() || !storeOnlyPostsWithCoordinates){
                     ElasticsearchConnectionManager.getInstance().insertPost(tweet);
                 }

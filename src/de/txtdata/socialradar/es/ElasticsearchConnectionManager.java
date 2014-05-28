@@ -125,14 +125,6 @@ public class ElasticsearchConnectionManager {
             Wait.forSeconds(5);
             System.out.println("Index '"+indexName+"' (re)created.");
 
-            Path settingPath = Paths.get(SETTINGS_FILE);
-            System.out.println("Loading settings from "+settingPath);
-            String settingString = new String(Files.readAllBytes(settingPath), StandardCharsets.UTF_8);
-            CLIENT.admin().indices().prepareClose(indexName).execute().actionGet();
-            CLIENT.admin().indices().prepareUpdateSettings(indexName).setSettings(settingString).execute().actionGet();
-            CLIENT.admin().indices().prepareOpen(indexName).execute().get();
-            System.out.println("Settings loaded from file and applied.");
-
             Path mappingPath = Paths.get(MAPPINGS_FILE);
             System.out.println("Loading mappings from "+mappingPath);
             String mappingString = new String(Files.readAllBytes(mappingPath), StandardCharsets.UTF_8);
